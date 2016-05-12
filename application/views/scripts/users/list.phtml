@@ -1,0 +1,57 @@
+<br /><br />
+<div id="view-content">
+<div class="container-fluid">
+	<div class="row">
+		<div class="follow-us">
+			<table class="table">
+				<tr class="panel-heading">
+				<div class="panel panel-primary">
+					<div class="panel-body">
+					<?php 
+echo "<a class='btn btn-primary' href=".$this->baseUrl()."/users/list/banned/2> View Banned Users </a>";
+echo "<a class='btn btn-primary' href=".$this->baseUrl()."/users/list/banned/1 > View Not Banned Users </a>";
+echo "<a class='btn btn-primary' href=".$this->baseUrl()."/users/list/role/1> View Regular User</a>";
+echo "<a class='btn btn-primary' href=".$this->baseUrl()."/users/list/role/2> View Adminstrators</a>";
+echo "<a class='btn btn-info' href=".$this->baseUrl()."/users/list/	> View All </a>";	
+					?>
+					</div>
+				</div>
+				<?php 
+				if(isset($this->users[0])){	
+					foreach ($this->users[0] as $key => $value) {
+						if($key != 'password' && $key != 'signature')
+                  			echo "<th>$key</th>"; 
+					}
+				?>
+				<th> operations </th>
+				<tr>
+				<?php 
+					foreach ($this->users as $key => $value) {
+						echo "<tr>";
+						unset($value['password'], $value['signature']);
+						foreach ($value as $key_x => $value_x) {
+							if($key_x == "id"){
+								$id = $value_x;
+							}if($key_x == 'photo' && !empty($value_x)){
+								echo "<td><div class='thumb'><img class='thumbnail' src='".$this->baseUrl()."/images/userprofile/".$value_x."'></div></td>";
+							}
+							else{
+								echo "<td>$value_x</td>";
+							}
+					}
+echo "<div><td>";
+echo "<a class='btn btn-info' href='".$this->baseUrl()."/users/profile/id/".$id."'> View Profile"
+."<a class ='btn btn-primary'href='".$this->baseUrl()."/users/update/id/".$id."'> Update Profile</a>"
+."<a class ='btn btn-danger' href='".$this->baseUrl()."/users/delete/id/".$id."'> Delete User</a>";
+echo "</td></div>";
+						echo "</tr>";
+				}
+			}else{
+				echo "<td><div class=alert alert-danger' role='alert'><i class='fa fa-warning'> NO RESULTS FOUND</div></i></td>";
+				}
+			?>
+
+			</table>
+		</div>
+	</div>
+</div>

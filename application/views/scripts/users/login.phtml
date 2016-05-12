@@ -1,0 +1,33 @@
+<div class="view-content">
+	<div class="container">
+		<div class='row'>	
+			<div class="span8">
+				<div class="form-box">
+					<div class="form-body">
+						<legend>Login</legend>
+							<?php
+								echo $this->form;
+							?>
+							<?php
+								if(isset($this->error)){
+									echo "<div class='alert alert-danger' role='alert'>
+									  <i class='fa fa-times-circle'></i>
+									  <span class='sr-only'>Error:</span>
+									  ".$this->error."</div>";
+								}
+							?>
+					</div>
+				</div>
+			</div>
+
+			<div class='span4'>
+				<div class="form-box">
+					<div class="form-body">
+						<legend>Not a member yet?</legend>
+						<a class='btn btn-primary' href= <?= $this->baseUrl()."/users/register/" ?>> Rigester Now!</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
