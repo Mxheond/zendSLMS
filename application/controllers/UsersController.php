@@ -15,7 +15,7 @@ class UsersController extends Zend_Controller_Action
 
     public function indexAction()
     {
-
+        
     }
 
     public function loginAction()
@@ -154,8 +154,35 @@ class UsersController extends Zend_Controller_Action
         }
     }
 
+    public function deleteAction()
+    {
+        if(isset($this->identity)){
+            $id = $this->getRequest()->getParam('id');
+            $is_admin = $this->model->isAdmin($id);
+            $admin = $is_admin;
+            $count = count($admin);
+            if ($admin[0]['role']=='1') {
+                if($count == 1){
+                     $this->view->error = "Couldn't delete the last remainig admin";              
+                }else{
+                    if($this->model->deleteUser($id)){
+                     $this->redirect('users/list');
+                    }
+                }
+                
+            }else{
+                if($this->model->deleteUser($id)){
+                 $this->redirect('users/list');
+                }
+                
+            }
+        }
+    }
+
 
 }
+
+
 
 
 
