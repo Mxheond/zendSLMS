@@ -14,8 +14,8 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 	$row = $this->createRow();
 	$row->name = $courseInfo['name'];
 	$row->date = $courseInfo['date'];
-	$row->cat_id = $cat_id;
-	$row->admin_id = $admin_id;
+	$row->cat_id = 1;
+	$row->admin_id = 1;
 
 	return $row->save();
 	}
