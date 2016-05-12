@@ -9,13 +9,13 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 		return $this->fetchAll()->toArray();
 	}
 
-    function addCourse($courseInfo){
+    function addCourse($courseInfo,$cat_id,$admin_id){
 	
 	$row = $this->createRow();
 	$row->name = $courseInfo['name'];
 	$row->date = $courseInfo['date'];
-	$row->cat_id = $id;
-	$row->admin_id = 1;
+	$row->cat_id = $cat_id;
+	$row->admin_id = $admin_id;
 
 	return $row->save();
 	}

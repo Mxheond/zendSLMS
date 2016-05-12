@@ -1,0 +1,25 @@
+<div class="view-content">
+	<div class="container">
+		<div class='row'>	
+			<div class="span8">
+				<div class="form-box">
+					<div class="form-body">
+						<legend>First time here? Sign up now!</legend>
+							<?php
+								echo $this->form;
+							?>
+					</div>
+				</div>
+			</div>
+
+			<div class='span4'>
+				<div class="form-box">
+					<div class="form-body">
+						<legend>Already a member?</legend>
+						<a class='btn btn-primary'href= <?= $this->baseUrl()."/users/Login/" ?>> Login Here!</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -17,14 +17,15 @@ class Application_Form_Course extends Zend_Form
 	   		 )
 		));
 		$date = new Zend_Form_Element_Date('date');
-		$date->setRequired();
+//                Zend_Form_El
+//		$date->setRequired();
 		$date->setLabel('Date');
-		$date->addValidator(new Zend_Validate_Db_NoRecordExists(
-	    array(
-	        'table' => 'course',
-	        'field' => 'date'
-	   		 )
-		));
+//		$date->addValidator(new Zend_Validate_Db_NoRecordExists(
+//	    array(
+//	        'table' => 'course',
+//	        'field' => 'date'
+//	   		 )
+//		));
 
 		$name->setAttrib('class', 'form-control');
 		
