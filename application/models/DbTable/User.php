@@ -54,6 +54,15 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$row->is_banned = 0;
 		return $row->save();
 	}
+	function changeState($id,$col){
+		$row = $this->fetchRow('id='.$id);
+		if($row->$col == '0'){
+			$row->$col = '1';
+		}else{
+			$row->$col = '0';
+		}
+		return $row->save();
+	}
 
 }
 

@@ -77,6 +77,7 @@ class UsersController extends Zend_Controller_Action
     public function listAction()
     {
         if(isset($this->identity)){
+            if($this->identity->role == '1'){
             $request = $this->getRequest()->getParams();
             if (!empty($request['role'])) {
                 $users = $this->model->getUserByRole($request['role']);
@@ -90,11 +91,12 @@ class UsersController extends Zend_Controller_Action
             $this->view->rq = $this->getRequest()->getParams();
             $this->view->users = $users;
            
-        }else{
-            $this->redirect('index/index');
+            }else{
+                    $this->redirect('index/index');
+            }
         }
-     	
-    }
+    }	
+
 
     public function profileAction()
     {
@@ -157,6 +159,7 @@ class UsersController extends Zend_Controller_Action
     public function deleteAction()
     {
         if(isset($this->identity)){
+            if($this->identity->role == '1'){
             $id = $this->getRequest()->getParam('id');
             $is_admin = $this->model->isAdmin($id);
             $admin = $is_admin;
@@ -168,19 +171,58 @@ class UsersController extends Zend_Controller_Action
                     if($this->model->deleteUser($id)){
                      $this->redirect('users/list');
                     }
-                }
-                
+                }         
             }else{
                 if($this->model->deleteUser($id)){
                  $this->redirect('users/list');
                 }
-                
+            }
+        }else{
+            $this->redirect('users/login');
+        }
+    }
+    }
+
+    public function banAction()
+    {
+        if(isset($this->identity)){
+            if($this->identity->role == '1'){
+            $id = $this->getRequest()->getParam('id');
+            $user = $this->model->getUserById($id);
+            if($user[0]['role'] == '0'){
+                if($this->model->changeState($id,'is_banned')){
+                    $this->redirect('users/list');
+                 }else{
+                    $this->view->error = "Operation failed";
+                 }
+            }else{
+                $this->view->error = "Can't ban Administrator";
+            }  
+        }
+    }
+    }
+
+    public function changeRoleAction()
+    {
+       if(isset($this->identity)){
+        if($this->identity->role == '1'){
+            $id = $this->getRequest()->getParam('id');
+            $user = $this->model->getUserById($id);
+            if($this->model->changeState($id,'role')){
+                    $this->redirect('users/list');
+            }else{
+                    $this->view->error = "Operation failed";
             }
         }
+    }
     }
 
 
 }
+
+
+
+
 
 
 

@@ -11,7 +11,7 @@
 echo "<a class='btn btn-primary' href=".$this->baseUrl()."/users/list/banned/2> View Banned Users </a>";
 echo "<a class='btn btn-primary' href=".$this->baseUrl()."/users/list/banned/1 > View Not Banned Users </a>";
 echo "<a class='btn btn-primary' href=".$this->baseUrl()."/users/list/role/1> View Regular User</a>";
-echo "<a class='btn btn-primary' href=".$this->baseUrl()."/users/list/role/2> View Adminstrators</a>";
+echo "<a class='btn btn-primary' href=".$this->baseUrl()."/users/list/role/2> View Administrator</a>";
 echo "<a class='btn btn-info' href=".$this->baseUrl()."/users/list/	> View All </a>";	
 					?>
 					</div>
@@ -42,7 +42,9 @@ echo "<a class='btn btn-info' href=".$this->baseUrl()."/users/list/	> View All <
 echo "<div><td>";
 echo "<a class='btn btn-info' href='".$this->baseUrl()."/users/profile/id/".$id."'> View Profile"
 ."<a class ='btn btn-primary'href='".$this->baseUrl()."/users/update/id/".$id."'> Update Profile</a>"
-."<a class ='btn btn-danger' href='".$this->baseUrl()."/users/delete/id/".$id."'> Delete User</a>";
+."<a class ='btn btn-danger' href='".$this->baseUrl()."/users/delete/id/".$id."'> Delete User</a>"
+."<a class ='btn btn-danger' href='".$this->baseUrl()."/users/ban/id/".$id."'> Ban/UnBan User</a>"
+."<a class ='btn btn-warning' href='".$this->baseUrl()."/users/change-role/id/".$id."'> Change Role </a>";
 echo "</td></div>";
 						echo "</tr>";
 				}
