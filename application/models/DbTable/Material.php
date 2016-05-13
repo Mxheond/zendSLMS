@@ -7,17 +7,17 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
     protected $single_material;
 
 
-    protected $_dependentTables = array('comment');
+    // protected $_dependentTables = array('comment');
  
-    protected $_referenceMap    = array(
-    	 'Course' => array(
-            'columns'           => array('course_id'),
-            'refTableClass'     => 'course',
-            'refColumns'        => array('id'),
-            'onDelete'          => self::CASCADE,
-            'onUpdate'          => self::CASCADE
-        )
-    );
+    // protected $_referenceMap    = array(
+    // 	 'Course' => array(
+    //         'columns'           => array('course_id'),
+    //         'refTableClass'     => 'course',
+    //         'refColumns'        => array('id'),
+    //         'onDelete'          => self::CASCADE,
+    //         'onUpdate'          => self::CASCADE
+    //     )
+    // );
 
 
 
@@ -40,10 +40,10 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
 	///	lastInsertId();
 	}
 
-	// function getCourseMaterials($id){
-	// 	$select = $this->select("*")->where('course_id='.$id);
-	// 	return $this->fetchAll($select);
-	// }
+	function getCourseMaterials($id){
+		$select = $this->select("*")->where('course_id='.$id);
+		return $this->fetchAll($select)->toArray();
+	}
 
 
 	function deleteMaterial($id){

@@ -15,7 +15,7 @@ class UsersController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        
+
     }
 
     public function loginAction()
@@ -156,6 +156,7 @@ class UsersController extends Zend_Controller_Action
         }
     }
 
+<<<<<<< HEAD
     public function deleteAction()
     {
         if(isset($this->identity)){
@@ -217,6 +218,8 @@ class UsersController extends Zend_Controller_Action
     }
     }
 
+=======
+>>>>>>> be976d42e1383288fd4fadec3e24fc54a3049278
 
 }
 
@@ -232,9 +235,12 @@ class UsersController extends Zend_Controller_Action
 
 
 
+<<<<<<< HEAD
 
 
 
 
 
 
+=======
+>>>>>>> be976d42e1383288fd4fadec3e24fc54a3049278
