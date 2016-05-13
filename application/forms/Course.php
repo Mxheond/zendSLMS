@@ -16,10 +16,10 @@ class Application_Form_Course extends Zend_Form
 	        'field' => 'name'
 	   		 )
 		));
-		$date = new Zend_Form_Element_Date('date');
-//                Zend_Form_El
-//		$date->setRequired();
-		$date->setLabel('Date');
+// 		$date = new Zend_Form_Element_Date('date');
+// //                Zend_Form_El
+// //		$date->setRequired();
+// 		$date->setLabel('Date');
 //		$date->addValidator(new Zend_Validate_Db_NoRecordExists(
 //	    array(
 //	        'table' => 'course',
@@ -28,16 +28,16 @@ class Application_Form_Course extends Zend_Form
 //		));
 
 		$name->setAttrib('class', 'form-control');
-		
-//	 	$id = new Zend_Form_Element_Hidden('id');
+		$cat_id = new Zend_Form_Element_Select('cat_id');
+	 	$id = new Zend_Form_Element_Hidden('id');
 		// $content = new Zend_Form_Element_Textarea('content');
-		// $content->setLabel('Content');
+		$cat_id->setLabel('Select Category');
 		// $content->addValidator(new Zend_Validate_StringLength(array('min'=>10, 'max'=>250)));
 		// $content->setAttrib('class', 'form-control');
 		$submit = new Zend_Form_Element_Submit('Submit');
 		$submit->setAttrib('class', 'btn btn-primary');
 
-		$this->addElements(array($name, $date, $submit));
+		$this->addElements(array($id, $name, $cat_id, $submit));
 
     }
 

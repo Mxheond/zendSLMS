@@ -1,4 +1,22 @@
-<br /><br />
 <div id="view-content">
-	<h3 class="btn btn-success"> Main Category Page</h3>
+<div class="container	">
+	<div class="row">
+		<div class="follow-us">
+			<table class="table">
+				<th>Name</th>
+				<th>Date</th>
+<?php
+	echo "<th><a class='btn btn-primary'href='".$this->baseUrl()."/category/add'> Add New Category</a>";
+	foreach ($this->cats as $cat){
+	echo "<tr><td>".$cat['name'].'</td>';
+	echo "<td>".$cat['time'].'</td>';
+	echo "<td><a class='btn btn-primary' href='".$this->baseUrl()."/category/edit/id/".$cat['id']."'> <i class='fa fa-edit'></i> Edit </a> "."<a class='btn btn-danger' href='".$this->baseUrl()."/category/delete/id/".$cat['id']."'> <i class='fa fa-times-circle-o'></i> Delete </a>";
+	echo " <a class='btn btn-info' href='".$this->baseUrl()."/category/single/id/".$cat['id']."'> <i class='fa fa-info'></i> Details </a> ";
+	echo "</tr></td>";
+	}
+?>
+</table>
 </div>
+</div>
+</div>
+

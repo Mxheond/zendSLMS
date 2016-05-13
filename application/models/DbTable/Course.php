@@ -10,14 +10,13 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 	}
 
     function addCourse($courseInfo,$cat_id,$admin_id){
-	
-	$row = $this->createRow();
-	$row->name = $courseInfo['name'];
-	$row->date = $courseInfo['date'];
-	$row->cat_id = 1;
-	$row->admin_id = 1;
-
-	return $row->save();
+		$row = $this->createRow();
+		$row->name = $courseInfo['name'];
+		$date = Zend_Date::now();
+		$row->time = $date;
+		$row->cat_id = $courseInfo['cat_id'];
+		$row->admin_id = 1;
+		return $row->save();
 	}
 
 	function deleteCourse($id){
@@ -30,6 +29,21 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 
 	function getCourseById($id){
 		return $this->find($id)->toArray();
+	}
+
+	function getCourseCat(){
+
+		$select = $this->select()->setintegritycheck(false)
+		->from('course')
+     	->join('category','')
+     	->where('category.id = course.cat_id');
+        return $this->fetchAll($select)->toArray();
+	}
+	function getCat(){
+		$cat = new Application_Model_DbTable_Category();
+		$select = $cat->select("*")
+						->from('category');
+		return $this->fetchAll($select)->toArray();
 	}
 
 }
