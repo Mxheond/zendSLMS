@@ -217,17 +217,6 @@ class UsersController extends Zend_Controller_Action
         }
     }
 
-    public function sdAction()
-    {
-        // action body
-    }
-
-    public function llllAction()
-    {
-        // action body
-    }
-
-
 }
 
 
