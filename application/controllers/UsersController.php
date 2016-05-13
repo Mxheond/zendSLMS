@@ -11,10 +11,29 @@ class UsersController extends Zend_Controller_Action
             $this->identity = $this->auth->getIdentity();
             $this->view->identity = $this->identity;
         }
+        require_once '/var/www/html/zendSLMS/library/Zend/Mail/Transport/Smtp.php';
+        $config = array(
+                'ssl' => 'tls',
+                'port' => 587,
+                'auth' => 'login',
+                'username' => 'mxheond9@gmail.com',
+                'password' => 'mypassword');
+        $tr = new Zend_Mail_Transport_Smtp('smtp.gmail.com',$config);
+        Zend_Mail::setDefaultTransport($tr);
     }
 
     public function indexAction()
     {
+        if (isset($this->identity)) {
+            if($this->identity->is_banned == '1'){
+                $this->redirect('/users/signout');
+            }else{
+                $this->redirect('/users/profile/id/'.$this->identity->id);
+            }
+        }else{
+            $this->redirect('index/index');
+        }
+        
     }
 
     public function loginAction()
@@ -39,8 +58,8 @@ class UsersController extends Zend_Controller_Action
                         $auth = Zend_Auth::getInstance();
                         $storage = $auth->getStorage();
                         $storage->write($authAdapter->getResultRowObject(
-                        array('id','email','full_name')));
-                        $this->redirect('index/index');
+                        array('id','email','full_name','role','is_banned')));
+                        $this->redirect('users/index');
                     }
                     else{
                         $this->view->form = $form;
@@ -60,10 +79,21 @@ class UsersController extends Zend_Controller_Action
         if(!isset($this->identity)){
             $form = new Application_Form_User();
             if($this->getRequest()->isPost()){
-            if($form->isValid($this->getRequest()->getParams())){
-            $data = $form->getValues();
-            if ($this->model->addUser($data))
-            $this->redirect('users/index');     
+                if($form->isValid($this->getRequest()->getParams())){
+                $data = $form->getValues();
+                $this->mail = new Zend_Mail();
+                $this->mail->setBodyText('Thanks'.$data['full_name'] .'For Joining Us! 
+                        Your ..  Email Address: '.$data['email'].' Gender: '.$data['gender']
+                        .' Country: '.$data['country']
+                        )
+                        ->setFrom('mxheond9@gmail.com', 'Zend SLMS')
+                        ->addTo($data['email'], $data['full_name'])
+                        ->setSubject('ZEND SLMS New Account')
+                        ->send();
+                    if ($this->model->addUser($data)){ 
+                        $this->redirect('users/login');
+                    }
+                            
                 }
             }
             $this->view->form = $form;
@@ -91,7 +121,7 @@ class UsersController extends Zend_Controller_Action
                 $this->view->users = $users;
            
             }else{
-                    $this->redirect('index/index');
+                    $this->redirect('users/index');
             }
         }else{
                     $this->redirect('index/index');
