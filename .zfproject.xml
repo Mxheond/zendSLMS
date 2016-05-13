@@ -20,6 +20,14 @@
       <formsDirectory>
         <formFile formName="Material"/>
       </formsDirectory>
+        <controllerFile controllerName="Post">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Course">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+      </controllersDirectory>
+      <formsDirectory enabled="false"/>
       <layoutsDirectory>
         <layoutScriptsDirectory>
           <layoutScriptFile layoutName="layout"/>
@@ -28,6 +36,7 @@
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="Material"/>
+          <dbTableFile dbTableName="Course"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -48,6 +57,11 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Materials">
             <viewScriptFile forActionName="single"/>
+          <viewControllerScriptsDirectory forControllerName="Post">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Course">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

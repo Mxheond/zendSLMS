@@ -1,0 +1,53 @@
+<div id="view-content">
+<div class="container">
+        	<div class="row">
+            	<div class="span4">
+                	<!--PROFILE IMAGE START-->
+                	<?php $user = $this->user[0]; ?>
+                	<div class="profile-box profile-view">
+                        <div class="thumb">
+                            <a href="#"><img src= <?= $this->baseUrl().'/images/userprofile/'.$user['photo'] ;?> alt=""></a>
+                        </div>
+                        <div class="text">
+                            <p></p>
+                            <a href="#" class="btn-style"><?= "$user[full_name]"; ?></a>
+                        </div>
+                    </div>
+                    <!--PROFILE IMAGE END-->
+                </div>
+                <div class="span8">
+                	<!--EDIT PROFILE START-->
+                	<div class="profile-box editing">
+                    	<h2><?= $user['full_name']."'s"?> Profile</h2>
+                        <ul>
+                           <li>
+                            	<label>Email</label>
+                                <span class="input-block-level"><?= "$user[email]"; ?></span>
+                            </li>
+                            <li>
+                            	<label>Gender</label>
+                                <span class="input-block-level"><?= "$user[gender]"; ?></span>
+                            </li>
+                            <li>
+                            	<label>Country</label>
+                                <span class="input-block-level"><?= "$user[country]"; ?></span>
+                            </li>
+                            <li class="fw">
+                            	<label>Signature</label>
+                            	<span class="input-block-level"><?= "$user[signature]"; ?></span>
+                            </li>
+                            <li class="fw">
+                            <?php
+                            if($this->identity->id == $user['id']){
+
+                            	echo "<a class='btn-style' href='".$this->baseUrl()."/users/update/id/".$user['id']."'> Update</a>";
+                           	 }  	
+                            ?>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--EDIT PROFILE END-->
+                </div>
+            </div>
+        </div>
+</div>

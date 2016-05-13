@@ -1,0 +1,14 @@
+<br /><br />
+
+<?php
+	foreach ($this->course as $course){
+	echo "<label> Name: </label>".$course['name'].'<br />';
+	echo "<label> Date: </label>".$course['date'].'<br />';
+	echo "<a href='".$this->baseUrl()."/course/edit/id/".$course['id']."'> Edit </a> "."<a href='".$this->baseUrl()."/course/delete/id/".$course['id']."'> Delete </a> <br />";
+	echo "<br/>";
+	echo "<a href='".$this->baseUrl()."/course/single/id/".$course['id']."'> Details </a> ";
+	echo "<br/>";
+	echo str_repeat('*', 100).'<br />';
+	}
+
+?>

@@ -1,4 +1,5 @@
 <?php
+
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
 	protected function _initSession(){
@@ -8,13 +9,22 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$session->setExpirationSeconds( 1800 );
 	}
 
+<<<<<<< HEAD
+	protected function _initSession()
+		{
+			Zend_Session::start();
+			$session = new Zend_Session_Namespace( 'Zend_Auth' );
+			// $session->setExpirationSeconds( 1800 );
+		}
+=======
 	protected function _initPlaceholders()
 	{
 		$this->bootstrap('View');
 		$view = $this->getResource('View');
 		$view->doctype('XHTML1_STRICT');
 		//Meta
-		$view->headMeta()->appendName('keywords', 'framework, PHP')->appendHttpEquiv('Content-Type','	text/html;charset=utf-8');
+		$view->headMeta()->appendName('keywords', 'framework, PHP')
+		->appendHttpEquiv('Content-Type','	text/html;charset=utf-8');
 		// Set the initial title and separator:
 		$view->headTitle('BLOG')->setSeparator(' :: ');
 		// Set the initial stylesheet:
@@ -39,5 +49,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view->headScript()->prependFile('/zendSLMS/public/js/bootstrap.min.js');
 		$view->headScript()->prependFile('/zendSLMS/public/js/jquery-1.11.0.min.js');
 	}
+>>>>>>> 084892eec83807a025ce36621de7bd0551e5a6e4
 
 }
+

@@ -1,0 +1,28 @@
+<div id="view-content">
+<div class="container">
+        	<div class="row">
+            	<div class="span4">
+                	<!--PROFILE IMAGE START-->
+                	<?php $user = $this->user[0]; ?>
+                	<div class="profile-box profile-view">
+                        <div class="thumb">
+                            <a href="#"><img src="images/profile-img.jpg" alt=""></a>
+                        </div>
+                        <div class="text">
+                            <p></p>
+                            <a href="#" class="btn-style"><?= "$user[full_name]"; ?></a>
+                        </div>
+                    </div>
+                    <!--PROFILE IMAGE END-->
+                </div>
+                <div class="span8">
+                	<!--EDIT PROFILE START-->
+                	<div class="profile-box editing">
+                    	<h2><?= $user['full_name']."'s"?> Profile</h2>
+                        <?= $this->form ?>
+                    </div>
+                    <!--EDIT PROFILE END-->
+                </div>
+            </div>
+        </div>
+</div>

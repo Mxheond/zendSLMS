@@ -1,4 +1,5 @@
 <?php
+
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
 	protected function _initSession(){
@@ -14,7 +15,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$view = $this->getResource('View');
 		$view->doctype('XHTML1_STRICT');
 		//Meta
-		$view->headMeta()->appendName('keywords', 'framework, PHP')->appendHttpEquiv('Content-Type','	text/html;charset=utf-8');
+		$view->headMeta()->appendName('keywords', 'framework, PHP')
+		->appendHttpEquiv('Content-Type','	text/html;charset=utf-8');
 		// Set the initial title and separator:
 		$view->headTitle('BLOG')->setSeparator(' :: ');
 		// Set the initial stylesheet:
@@ -41,3 +43,4 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	}
 
 }
+
