@@ -15,6 +15,7 @@ class Application_Form_User extends Zend_Form
 	$email = new Zend_Form_Element_Text('email');
 	$email->setRequired();
 	$email->setLabel('Email');
+	$email->addFilter('StringToLower');
 	$email->addValidator(new Zend_Validate_EmailAddress)
 	->addValidator(new Zend_Validate_Db_NoRecordExists(
     	array(

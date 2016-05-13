@@ -18,21 +18,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$role = (int)$role-1;
 		return $this->fetchAll('role = '.$role)->toArray();
 	}
-	function lastAdmin(){
-  		$admins = $this->getUserByRole(2);
-  		return $admins;
-  	}
-  
-  	function isAdmin($id){
-  		$user = $this->find($id)->toArray();
-  		if ($user[0]['role']=='1') {
-  		$last = $this->lastAdmin();
-  			return $last;
-  		}else{
-  			return $user;
-  		}
-  	}
-  
+
 	function getUserById($id){
 		return $this->find($id)->toArray();
 	}
@@ -51,18 +37,6 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$row->photo = $userInfo['photo'];
 		$row->role = 0;
 		$row->is_banned = 0;
-<<<<<<< HEAD
-=======
-		return $row->save();
-	}
-	function changeState($id,$col){
-		$row = $this->fetchRow('id='.$id);
-		if($row->$col == '0'){
-			$row->$col = '1';
-		}else{
-			$row->$col = '0';
-		}
->>>>>>> 7daf2ec92d3ba3d6a3c985cc8871da19bd05d0e0
 		return $row->save();
 	}
 

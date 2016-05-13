@@ -18,12 +18,11 @@ class CourseController extends Zend_Controller_Action
     	$this->view->course = $this->model->listCourses();
         $this->view->cat = $this->model->getCourseCat();
         $data = Zend_Auth::getInstance()->getStorage()->read();
-//        $admin_id = $data->id;
+        $admin_id = $data->id;
     }
 
     public function addAction()
     {
-        // action body
 
         $form = new Application_Form_Course();
         $cats = $this->model->getCat();
@@ -35,11 +34,19 @@ class CourseController extends Zend_Controller_Action
 			if($this->getRequest()->isPost()){
 				if($form->isValid($this->getRequest()->getParams())){
 				$data = $form->getValues();
+                                $date = Zend_Date::now();
+//                                var_dump($date);
+//                                die();
 				 $session= Zend_Auth::getInstance()->getStorage()->read();
 		   		 $admin_id = $session->id;
-				if ($this->model->addCourse($data,$cat_id,$admin_id))
+<<<<<<< HEAD
+				if ($this->model->addCourse($data,$summary,$date,$image,$cat_id,$admin_id))
 				$this->redirect('course/index');
 				
+=======
+				if ($this->model->addCourse($data,$cat_id,$admin_id))
+				$this->redirect('course/index');		
+>>>>>>> 7daf2ec92d3ba3d6a3c985cc8871da19bd05d0e0
 			}
 
 	}
@@ -51,7 +58,7 @@ class CourseController extends Zend_Controller_Action
     public function deleteAction()
     {
         $id = $this->getRequest()->getParam('id');
-		if($this->model->deletecourse($id))
+		if($this->model->deleteCourse($id))
 			$this->redirect('course/index');
     }
     
@@ -69,6 +76,10 @@ class CourseController extends Zend_Controller_Action
 				$this->redirect('course/index');
     		}
 
-
+   		}
+   		$this->view->form = $form;
+	
+    }
+    
 }
 

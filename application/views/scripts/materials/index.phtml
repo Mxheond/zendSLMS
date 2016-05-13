@@ -1,0 +1,25 @@
+<br /><br />
+<!-- <div id="view-content">
+	<p>View script for controller <b>Materials</b> and script/action name <b>index</b></p>
+</div> -->
+<?php
+	foreach ($this->materials as $material){
+		echo "<label> ID: </label>".$material['id'].'<br />';
+		// echo "<label> User ID: </label>".$material['user_id'].'<br />';
+		echo "<label> Name: </label><a href='".$this->baseUrl()."/materials/single/id/".$material['id']."'>".$material['name'].'</a><br />';
+		echo "<label> Type: </label>".$material['type'].'<br /><br />';
+		echo "<label> User ID: </label>".$material['user_id'].'<br /><br />';
+		echo "<label> Course ID: </label>".$material['course_id'].'<br /><br />';
+		echo "<label> Number of downloads: </label>".$material['num_downloads'].'<br /><br />';
+		echo "<label> Is_Locked: </label>".$material['is_locked'].'<br /><br />';
+		echo "<label> Is_Hidden: </label>".$material['is_hidden'].'<br /><br />';
+?>
+<form action="<?= $this->baseUrl() ?>/comments/add" method="post" >
+	<textarea name="content"></textarea>
+	<input type="hidden" name="material_id" value="<?= $material['id'] ?>" />
+	<input type="submit" name="submit" value="Add Comment" />
+</form>
+<?php
+		echo "<a href='".$this->baseUrl()."/materials/edit/id/".$material['id']."'> Edit </a> "."<a href='".$this->baseUrl()."/materials/delete/id/".$material['id']."'> Delete </a> <br />";
+		echo str_repeat('*', 100).'<br />';
+	}
