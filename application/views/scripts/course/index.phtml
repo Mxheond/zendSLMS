@@ -3,7 +3,12 @@
 <?php
 	foreach ($this->course as $course){
 	echo "<label> Name: </label>".$course['name'].'<br />';
-	echo "<label> Date: </label>".$course['date'].'<br />';
+//	echo "<label> Date: </label>".$course['date'].'<br />';
+        echo "<label> Summary: </label>".$course['summary'].'<br />';
+
+       echo "<img src='".$this->baseUrl()."/images/courses/".$course['image']."'>"; 
+       echo "<br />";
+
 	echo "<a href='".$this->baseUrl()."/course/edit/id/".$course['id']."'> Edit </a> "."<a href='".$this->baseUrl()."/course/delete/id/".$course['id']."'> Delete </a> <br />";
 	echo "<br/>";
 	echo "<a href='".$this->baseUrl()."/course/single/id/".$course['id']."'> Details </a> ";

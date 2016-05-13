@@ -37,7 +37,6 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$row->photo = $userInfo['photo'];
 		$row->role = 0;
 		$row->is_banned = 0;
-		$row->is_active = 1; 
 		return $row->save();
 	}
 

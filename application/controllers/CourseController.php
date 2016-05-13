@@ -17,21 +17,23 @@ class CourseController extends Zend_Controller_Action
     {
     	$this->view->course = $this->model->listCourses();
         $data = Zend_Auth::getInstance()->getStorage()->read();
-//        $admin_id = $data->id;
+        $admin_id = $data->id;
     }
 
     public function addAction()
     {
-        // action body
 
         $form = new Application_Form_Course();
         $values = $this->getRequest()->getParams();
 			if($this->getRequest()->isPost()){
 				if($form->isValid($this->getRequest()->getParams())){
 				$data = $form->getValues();
+                                $date = Zend_Date::now();
+//                                var_dump($date);
+//                                die();
 				 $session= Zend_Auth::getInstance()->getStorage()->read();
 		   		 $admin_id = $session->id;
-				if ($this->model->addCourse($data,$cat_id,$admin_id))
+				if ($this->model->addCourse($data,$summary,$date,$image,$cat_id,$admin_id))
 				$this->redirect('course/index');
 				
 			}
@@ -44,10 +46,28 @@ class CourseController extends Zend_Controller_Action
     public function deleteAction()
     {
         $id = $this->getRequest()->getParam('id');
-		if($this->model->deletecourse($id))
+		if($this->model->deleteCourse($id))
 			$this->redirect('course/index');
     }
+    
+    public function editAction()
+    {
+        $id = $this->getRequest()->getParam('id');
+		$course = $this->model->getCourseById($id);
+		$form = new Application_Form_Course();
+		$form->populate($course[0]);
+        $values = $this->getRequest()->getParams();
+		if($this->getRequest()->isPost()){
+			if($form->isValid($this->getRequest()->getParams())){
+				$data = $form->getValues();
+				$this->model->editCourse($id,$data);
+				$this->redirect('course/index');
+    		}
 
-
+   		}
+   		$this->view->form = $form;
+	
+    }
+    
 }
 
