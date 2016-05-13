@@ -42,9 +42,25 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 	function getCat(){
 		$cat = new Application_Model_DbTable_Category();
 		$select = $cat->select("*")
-						->from('category');
+					->from('category');
 		return $this->fetchAll($select)->toArray();
 	}
+	function getDistCat(){
+		$cat = new Application_Model_DbTable_Category();
+		$select = $cat->select()
+					->distinct()
+					->from('category');
+		return $this->fetchAll($select)->toArray();
+	}
+	function getCourseByCat($id){
+		$select = $this->select()->setintegritycheck(false)
+             ->from(array('category' => 'category'),
+                    array('id', 'name'))
+             ->join(array('course' => 'course'),
+                    'category.id = course.cat_id and category.id = '.$id);
+        return $this->fetchAll($select)->toArray();
+	}
+	
 
 }
 

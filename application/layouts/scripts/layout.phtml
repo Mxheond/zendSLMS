@@ -1,4 +1,6 @@
-<?php echo $this->doctype() ?>
+<?php echo $this->doctype();
+$identity = Zend_Auth::getInstance()->getIdentity();
+?>
 <html>
 <head>
 <?php echo $this->headMeta(); ?>
@@ -17,8 +19,18 @@
                 <!--ACCOUNT SECTION START-->
                 <div class="account">
                 	<ul>
-                    	<li><a href="#">Subscribe</a></li>
+                	<?php
+                		if(!isset($identity)){
+					?>
+                    	<li><a href=<?= $this->baseUrl()."/users/register"?>>Sign Up</a></li>
+ 					 <?php
+                    	}
+                    ?>
+                    <?php
+                		if(isset($identity)){
+					?>
                         <li><a href=<?= $this->baseUrl()."/users/signout"?>>Sign Out</a></li>
+                     
                         <li>
                         	<div class="dropdown">
                                 <a class="dropdown-toggle" id="account" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
@@ -26,11 +38,12 @@
                                 <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu" role="menu" aria-labelledby="account">
-                                    <li><a href="#">Profile</a></li>
-                                    <li><a href="#">Account Setting</a></li>
-                                    <li><a href="#">Privacy Setting</a></li>
-                                </ul>
+                                    <li><a href=<?=$this->baseUrl()."/users/profile/id/".$this->identity->id?>>Profile</a></li>
+                                    <li><a href=<?=$this->baseUrl()."/users/update/id/".$this->identity->id?>>Update Profile</a></li></ul>
                             </div>
+                            <?php
+              			}
+						?>
                         </li>
                     </ul>
                 </div>
@@ -42,8 +55,11 @@
         <div class="navigation-bar">
         	<div class="container">
             	<div class="logo">
-                	<a href="index.html"><img src="/zendSLMS/public/images/logo.png" alt=""></a>
+                	<a href=<?= $this->baseUrl()."/index/index"?>><img src="/zendSLMS/public/images/logo.png" alt=""></a>
                 </div>
+                 <?php
+              if(isset($this->identity)){
+		?>
                 <div class="navigation">
 					<div class="navbar">
 					  <div class="navbar-inner" >
@@ -55,15 +71,7 @@
 						  </button>
 						  <div class="nav-collapse collapse">
 							<ul>
-								<li><a href="javascript:void(0)">Home</a>
-									<ul>
-                                    	<li><a href="index.html">Home Page Default</a></li>
-                                    	<li><a href="index-1.html">Home Page 1</a></li>
-                                        <li><a href="index-2.html">Home Page 2</a></li>
-                                        <li><a href="index-3.html">Home Page 3</a></li>
-                                        <li><a href="index-4.html">Home Page 4</a></li>
-                                        <li><a href="index-sidemenu.html">Home Page 5</a></li>
-                                    </ul>
+                            	<li><a href=<?= $this->baseUrl()."/index/index"?>>Home</a></li>
 								</li>
 								<li><a href="javascript:void(0)">Blog</a>
 									<ul>
@@ -103,14 +111,33 @@
 								</li>
 								<li><a href="contact-us.html">Contact Us</a></li>
 							</ul>
+							<?php if($this->identity->role == '1'){
+								?>
+							<ul>
+							<li><a href="javascript:void(0)">Admin</a>
+									<ul>
+										<li><a href=<?= $this->baseUrl()."/users/list"?>>Users</a></li>
+										<li><a href=<?= $this->baseUrl()."/course/index"?>>Courses</a></li>
+										<li><a href=<?= $this->baseUrl()."/category/index"?>>Categorise</a></li>
+										</li>
+									</ul>
+								</li>
+								</ul>
+								<?php
+							}
+								?>
 						  </div>
 						</div>
 					  </div>
 					</div>
 				</div>
+				 <?php
+              }
+		?>
             </div>
         
        </div>
+      
 </div>
         <!--NAVIGATION END-->
     </header>

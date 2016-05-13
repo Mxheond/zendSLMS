@@ -6,10 +6,12 @@ class CourseController extends Zend_Controller_Action
     public function init()
     {
     	$this->model = new Application_Model_DbTable_Course();
-    	  $authorization =Zend_Auth::getInstance();
-         if(!$authorization->hasIdentity()) {
-       
+        $this->auth =Zend_Auth::getInstance();
+         if(!$this->auth->hasIdentity()) {
              $this->redirect('users/login');
+         }else{
+            $this->identity = $this->auth->getIdentity();
+            $this->view->identity = $this->identity;   
          }
     }
 
@@ -23,8 +25,6 @@ class CourseController extends Zend_Controller_Action
 
     public function addAction()
     {
-        // action body
-
         $form = new Application_Form_Course();
         $cats = $this->model->getCat();
         $cat_form= $form->getElement('cat_id');
@@ -40,13 +40,12 @@ class CourseController extends Zend_Controller_Action
 				if ($this->model->addCourse($data,$cat_id,$admin_id))
 				$this->redirect('course/index');		
 			}
-
 	}
 	$this->view->form = $form;
     $this->view->cats = $cat;
 	
     }
-    
+
     public function deleteAction()
     {
         $id = $this->getRequest()->getParam('id');
@@ -54,6 +53,20 @@ class CourseController extends Zend_Controller_Action
 			$this->redirect('course/index');
     }
 
+    public function listAction()
+    {
+        $cid = $this->getRequest()->getParam('cid');
+        if (isset($cid)) {
+            $this->view->course = $this->model->getCourseByCat($cid);
+        }else{
+            $this->view->course = $this->model->listCourses();
+        }
+        $this->view->cats = $this->model->getDistCat();
+
+    }
+
 
 }
+
+
 
