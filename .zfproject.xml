@@ -22,29 +22,27 @@
           <actionMethod actionName="delete"/>
           <actionMethod actionName="ban"/>
           <actionMethod actionName="changeRole"/>
+          <actionMethod actionName="llll"/>
         </controllerFile>
-      </controllersDirectory>
-      <formsDirectory>
-        <formFile formName="User"/>
-        <formFile formName="Login"/>
-      </formsDirectory>
         <controllerFile controllerName="Materials">
           <actionMethod actionName="index"/>
           <actionMethod actionName="add"/>
           <actionMethod actionName="single"/>
         </controllerFile>
-      </controllersDirectory>
-      <formsDirectory>
-        <formFile formName="Material"/>
-      </formsDirectory>
         <controllerFile controllerName="Post">
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Course">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="list"/>
         </controllerFile>
       </controllersDirectory>
-      <formsDirectory enabled="false"/>
+      <formsDirectory>
+        <formFile formName="User"/>
+        <formFile formName="Login"/>
+        <formFile formName="Material"/>
+        <formFile formName="Category"/>
+      </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
           <layoutScriptFile layoutName="layout"/>
@@ -53,12 +51,14 @@
       <modelsDirectory>
         <modelFile modelName="User"/>
         <dbTableDirectory>
-          <dbTableFile dbTableName="User"/>
-        <dbTableDirectory>
-          <dbTableFile dbTableName="Material"/>
-          <dbTableFile dbTableName="Course"/>
+          <dbTableFile dbTableName="Category"/>
         </dbTableDirectory>
       </modelsDirectory>
+      <dbTableDirectory>
+        <dbTableFile dbTableName="User"/>
+        <dbTableFile dbTableName="Material"/>
+        <dbTableFile dbTableName="Course"/>
+      </dbTableDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>
       <viewsDirectory>
@@ -98,6 +98,7 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Users">
             <viewScriptFile forActionName="changeRole"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Materials">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
@@ -106,11 +107,18 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Materials">
             <viewScriptFile forActionName="single"/>
+          </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Post">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Course">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Users">
+            <viewScriptFile forActionName="llll"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Course">
+            <viewScriptFile forActionName="list"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

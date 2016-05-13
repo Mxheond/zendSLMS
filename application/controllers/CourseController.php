@@ -38,7 +38,8 @@ class CourseController extends Zend_Controller_Action
 				 $session= Zend_Auth::getInstance()->getStorage()->read();
 		   		 $admin_id = $session->id;
 				if ($this->model->addCourse($data,$cat_id,$admin_id))
-				$this->redirect('course/index');		
+				$this->redirect('course/index');
+				
 			}
 	}
 	$this->view->form = $form;
@@ -52,6 +53,20 @@ class CourseController extends Zend_Controller_Action
 		if($this->model->deletecourse($id))
 			$this->redirect('course/index');
     }
+    
+    public function editAction()
+    {
+        $id = $this->getRequest()->getParam('id');
+		$course = $this->model->getCourseById($id);
+		$form = new Application_Form_Course();
+		$form->populate($course[0]);
+        $values = $this->getRequest()->getParams();
+		if($this->getRequest()->isPost()){
+			if($form->isValid($this->getRequest()->getParams())){
+				$data = $form->getValues();
+				$this->model->editCourse($id,$data);
+				$this->redirect('course/index');
+    		}
 
     public function listAction()
     {

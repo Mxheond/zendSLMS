@@ -7,6 +7,22 @@
 				<th>Date</th>
 				<th>Category</th>
 <?php
+<<<<<<< HEAD
+	foreach ($this->course as $course){
+	echo "<label> Name: </label>".$course['name'].'<br />';
+//	echo "<label> Date: </label>".$course['date'].'<br />';
+        echo "<label> Summary: </label>".$course['summary'].'<br />';
+
+       echo "<img src='".$this->baseUrl()."/images/courses/".$course['image']."'>"; 
+       echo "<br />";
+
+	echo "<a href='".$this->baseUrl()."/course/edit/id/".$course['id']."'> Edit </a> "."<a href='".$this->baseUrl()."/course/delete/id/".$course['id']."'> Delete </a> <br />";
+	echo "<br/>";
+	echo "<a href='".$this->baseUrl()."/course/single/id/".$course['id']."'> Details </a> ";
+	echo "<br/>";
+	echo str_repeat('*', 100).'<br />';
+	}
+=======
 echo "<th><a class='btn btn-primary' href='".$this->baseUrl()."/course/add'> Add New Course</a>";
 	// if (!empty($cat)) {
 		$cat = $this->cat;
@@ -21,6 +37,7 @@ echo "<th><a class='btn btn-primary' href='".$this->baseUrl()."/course/add'> Add
 		echo "</td></tr>";
 		}	
 		// }
+>>>>>>> 7daf2ec92d3ba3d6a3c985cc8871da19bd05d0e0
 
 ?>
 </table>
