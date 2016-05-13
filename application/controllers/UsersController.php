@@ -15,7 +15,6 @@ class UsersController extends Zend_Controller_Action
 
     public function indexAction()
     {
-
     }
 
     public function loginAction()
@@ -78,25 +77,26 @@ class UsersController extends Zend_Controller_Action
     {
         if(isset($this->identity)){
             if($this->identity->role == '1'){
-            $request = $this->getRequest()->getParams();
-            if (!empty($request['role'])) {
-                $users = $this->model->getUserByRole($request['role']);
-            }elseif(!empty($request['banned'])){
-                $users = $this->model->getBanned($request['banned']);
-            }elseif(!empty($request['active'])){
-                $users = $this->model->getInactiveUsers($request['active']);
-            }else{
-                 $users = $this->model->listUsers();
-            }
-            $this->view->rq = $this->getRequest()->getParams();
-            $this->view->users = $users;
+                $request = $this->getRequest()->getParams();
+                if (!empty($request['role'])) {
+                    $users = $this->model->getUserByRole($request['role']);
+                }elseif(!empty($request['banned'])){
+                    $users = $this->model->getBanned($request['banned']);
+                }elseif(!empty($request['active'])){
+                    $users = $this->model->getInactiveUsers($request['active']);
+                }else{
+                     $users = $this->model->listUsers();
+                }
+                $this->view->rq = $this->getRequest()->getParams();
+                $this->view->users = $users;
            
             }else{
                     $this->redirect('index/index');
             }
+        }else{
+                    $this->redirect('index/index');
         }
-    }	
-
+    }
 
     public function profileAction()
     {
@@ -156,7 +156,6 @@ class UsersController extends Zend_Controller_Action
         }
     }
 
-<<<<<<< HEAD
     public function deleteAction()
     {
         if(isset($this->identity)){
@@ -188,38 +187,46 @@ class UsersController extends Zend_Controller_Action
     {
         if(isset($this->identity)){
             if($this->identity->role == '1'){
-            $id = $this->getRequest()->getParam('id');
-            $user = $this->model->getUserById($id);
-            if($user[0]['role'] == '0'){
-                if($this->model->changeState($id,'is_banned')){
-                    $this->redirect('users/list');
-                 }else{
-                    $this->view->error = "Operation failed";
-                 }
-            }else{
-                $this->view->error = "Can't ban Administrator";
-            }  
+                $id = $this->getRequest()->getParam('id');
+                $user = $this->model->getUserById($id);
+                if($user[0]['role'] == '0'){
+                    if($this->model->changeState($id,'is_banned')){
+                        $this->redirect('users/list');
+                     }else{
+                        $this->view->error = "Operation failed";
+                     }
+                }else{
+                    $this->view->error = "Can't ban Administrator";
+                }  
+            }
         }
-    }
     }
 
     public function changeRoleAction()
     {
        if(isset($this->identity)){
-        if($this->identity->role == '1'){
-            $id = $this->getRequest()->getParam('id');
-            $user = $this->model->getUserById($id);
-            if($this->model->changeState($id,'role')){
-                    $this->redirect('users/list');
-            }else{
-                    $this->view->error = "Operation failed";
+            if($this->identity->role == '1'){
+                $id = $this->getRequest()->getParam('id');
+                $user = $this->model->getUserById($id);
+                if($this->model->changeState($id,'role')){
+                        $this->redirect('users/list');
+                }else{
+                        $this->view->error = "Operation failed";
+                }
             }
         }
     }
+
+    public function sdAction()
+    {
+        // action body
     }
 
-=======
->>>>>>> be976d42e1383288fd4fadec3e24fc54a3049278
+    public function llllAction()
+    {
+        // action body
+    }
+
 
 }
 
@@ -227,20 +234,3 @@ class UsersController extends Zend_Controller_Action
 
 
 
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-
-
-
-
-
-
-=======
->>>>>>> be976d42e1383288fd4fadec3e24fc54a3049278
