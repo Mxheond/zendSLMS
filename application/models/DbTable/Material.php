@@ -40,6 +40,11 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
 	///	lastInsertId();
 	}
 
+	function editMaterial($update_data,$id)
+	{
+		return $this->update($update_data,"id=".$id);
+	}
+
 	function getCourseMaterials($id){
 		$select = $this->select("*")->where('course_id='.$id);
 		return $this->fetchAll($select)->toArray();

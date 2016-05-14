@@ -14,14 +14,14 @@
 				<th>Date</th>
 
 <?php
-echo "<th><a class='btn btn-primary' href='".$this->baseUrl()."/materials/add'> Add New Material</a></th>";
+
 	foreach ($this->materials as $material){
 		if ($material['is_hidden']== "0" ) {
 			show($material,$this->baseUrl());
 		}
-		// elseif ($this->identity->role == "1") {
-		// 	show($material,$this);
-		// }
+		elseif ($this->identity->role == "1") {
+			show($material,$this->baseUrl());
+		}
 }
 function show($material,$path)
 {
@@ -37,7 +37,10 @@ function show($material,$path)
 	echo "<td>".$material['is_hidden'].'</td>';
 	echo "<td>".$material['time'].'</td>';
 	echo "<td><a  class= 'btn btn-primary' href='".$path."/materials/download/id/".$material['id']."'>Download</a></td>";
-	echo "<td><a class='btn btn-info' href='".$path."/materials/edit/id/".$material['id']."'> Edit </a></td> "."<td><a class='btn btn-danger' href='".$path."/materials/delete/id/".$material['id']."'> Delete </a></td> </tr>";
+	echo "<td><a class='btn btn-info' href='".$path."/materials/edit/id/".$material['id']."'> Edit </a></td> "."<td><a class='btn btn-danger' href='".$path."/materials/delete/id/".$material['id']."'> Delete </a></td> ";
+	echo "<td><a href='".$path."/materials/show/id/".$material['id'].($material['is_hidden'] == "0" ?  "'  class='btn btn-danger' > Hide </a> </td>": "' class='btn btn-success'> Show </a> ");
+	
+	echo "<td><a href='".$path."/materials/lock/id/".$material['id'].($material['is_locked'] == "0" ?  "' class = 'btn btn-danger'> Lock </a> ": "' class = 'btn btn-success'> Unlock </a> ")."</td></tr>";
 
 }
 

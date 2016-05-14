@@ -2,12 +2,13 @@
 <div id="view-content">
 <?php
 	$material = $this->material;
+	$course = $this->course;
 	// echo "<label> ID: </label>".$material['id'].'<br />';
 	// echo "<label> User ID: </label>".$material['user_id'].'<br />';
 	echo "<label> Name: </label><p>".$material['name'].'</p><br />';
 	echo "<label> Type: </label>".$material['type'].'<br /><br />';
 	// echo "<label> User ID: </label>".$material['user_id'].'<br /><br />';
-	echo "<label> Course Name: </label>".$this->course.'<br /><br />';
+	echo "<label> Course Name: </label><a href='".$this->baseUrl()."/course/single/id/".$course['id']."'>".$course['name'].'</a> <br /><br />';
 	echo "<label> Number of downloads: </label>".$material['num_downloads'].'<br /><br />';
 	// echo "<label> Is_Locked: </label>".$material['is_locked'].'<br /><br />';
 	// echo "<label> Is_Hidden: </label>".$material['is_hidden'].'<br /><br />';
@@ -18,12 +19,11 @@
 	}
 	
 	echo "<br/> ";
-	// if ($this->identity->role == "1") {
-		echo "<a href='".$this->baseUrl()."/materials/edit/id/".$material['id']."'> Edit </a> "."<a href='".$this->baseUrl()."/materials/delete/id/".$material['id']."'> Delete </a> <br />";
-		echo "<a href='".$this->baseUrl()."/materials/show/id/".$material['id'].($material['is_hidden'] == "0" ?  "'> Hide </a> ": "'> Show </a> ");
+	if ($this->identity->role == "1") {
+		echo "<a class='btn btn-info' href='".$this->baseUrl()."/materials/edit/id/".$material['id']."'> Edit </a> "."<a class='btn btn-danger' href='".$this->baseUrl()."/materials/delete/id/".$material['id']."'> Delete </a>"." <a href='".$this->baseUrl()."/materials/show/id/".$material['id'].($material['is_hidden'] == "0" ?  "' class='btn btn-danger'> Hide </a> ": "' class='btn btn-success'> Show </a> ");
 		
-		echo "<a href='".$this->baseUrl()."/materials/lock/id/".$material['id'].($material['is_locked'] == "0" ?  "'> Lock </a> ": "'> Unlock </a> ");
-	// }
+		echo "<a href='".$this->baseUrl()."/materials/lock/id/".$material['id'].($material['is_locked'] == "0" ?  "' class='btn btn-danger'> Lock </a> ": "' class='btn btn-success'> Unlock </a> ");
+	}
 
 	echo  "<br/><h3>Comments</h3>";
 
