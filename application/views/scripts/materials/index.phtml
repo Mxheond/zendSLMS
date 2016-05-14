@@ -14,14 +14,14 @@
 				<th>Date</th>
 
 <?php
-echo "<th><a class='btn btn-primary' href='".$this->baseUrl()."/materials/add'> Add New Material</a></th>";
+
 	foreach ($this->materials as $material){
 		if ($material['is_hidden']== "0" ) {
 			show($material,$this->baseUrl());
 		}
-		// elseif ($this->identity->role == "1") {
-		// 	show($material,$this);
-		// }
+		elseif ($this->identity->role == "1") {
+			show($material,$this);
+		}
 }
 function show($material,$path)
 {

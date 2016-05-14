@@ -1,4 +1,78 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Course</b> and script/action name <b>single</b></p>
+<div class="page-heading">
+<div class="container">
+<h2>Course Detail</h2>
 </div>
+</div>
+<!--BANNER END-->
+<div class="course-detail">
+<div class="container">
+<div class="row">
+<span class="span6">
+	<img src=<?php echo $this->baseUrl().'/images/courses/'.$this->course[0]['image'] ?>>
+</span>
+<div class="span6">
+	<div class="text">
+    	<h2><?php echo $this->course[0]['name'] ?></h2>
+        <h5></h5>
+        <div class="reviews">
+        	<a href="#">109 Reviews</a>
+            <div class="rating">
+            	<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            </div>
+        </div>
+        <div clas='row'>
+        <table class='span5'>
+        	<tr>
+        	<textarea><?php echo $this->course[0]['summary']?></textarea>
+        	</tr>
+        </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<!--CONTANT START-->
+<div class="contant">
+<div class="container">
+<div class="row">
+<div class="span9">
+	<div class="featured-courses">
+	<?php 
+		if(!empty($this->courseM)){
+	?>
+    	<h2>Browsing All Matrials</h2>
+    	<div class="row">
+    	<?php
+    		foreach ($this->courseM as $cm) {
+    		}
+    		if($cm['is_hidden'] == '0'){
+    	?>
+        	<div class="span3">
+            	<div class="course">
+                    <div class="text">
+                        <div class="header">
+                            <h4><?php echo $cm['name'] ?> <span class='badge'><?php echo $cm['type']?></span></h4>
+                            <div class="well">
+                                <span class='badge'>Number of downloads <?php echo $cm['num_downloads'] ?></span>
+                            </div>
+                        </div>
+                       <?php if($cm['is_locked'] == '0'){
+                       ?>
+                        <div class="course-detail-btn">
+                            <a href="#">View</a>
+                            <a href="#">Download</a>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php 
+    	}
+    }
+        ?>
+    </div>
+</div>
+
+     
