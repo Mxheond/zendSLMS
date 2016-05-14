@@ -247,7 +247,40 @@ class UsersController extends Zend_Controller_Action
         }
     }
 
+    public function requestAction()
+    {
+        if (isset($this->identity)) {
+            $values = $this->getRequest()->getParams();
+            {
+                if($this->getRequest()->isPost()){
+                        $content = $this->getRequest()->getParam('content');
+                        $id = $this->identity->id;
+                    if ($this->model->sendRequest($id,$content))
+                     $this->redirect('index/index');
+                    }
+            }
+        }
+    }
+
+    public function listRequestAction()
+    {
+        if (isset($this->identity)) {
+            if($this->identity->role == '1'){
+                $this->view->requests = $this->model->getAllRequests();
+            }else{
+                $this->redirect('index/index');
+            }
+        }else{
+            $this->redirect('users/login');
+        }
+    }
+
+
 }
+
+
+
+
 
 
 

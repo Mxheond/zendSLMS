@@ -1,0 +1,26 @@
+<div id="view-content">
+<div class="container">
+	<div class="row">
+		<div class="follow-us">
+			<table class="table">
+				<th>ID</th>
+				<th>Content</th>
+				<th>Date</th>
+<?php
+
+	// if (!empty($cat)) {
+		$requests = $this->requests;
+		$num = count($requests);
+		for ($i=0; $i < $num ; $i++) { 
+		echo "<tr><td>".$requests[$i]['id'].'</td>';
+		echo "<td>".$requests[$i]['content'].'</td>';
+		echo "<td>".$requests[$i]['time'].'</td></tr>';
+		}	
+		// }
+
+?>
+</table>
+</div>
+</div>
+</div>
+</div>

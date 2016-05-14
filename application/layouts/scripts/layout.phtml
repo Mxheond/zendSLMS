@@ -73,7 +73,7 @@ $identity = Zend_Auth::getInstance()->getIdentity();
 							<ul>
                             	<li><a href=<?= $this->baseUrl()."/index/index"?>>Home</a></li>
 								</li>
-									<li><a href="blog.html">Send Request</a></li>
+									<li><a href=<?php echo $this->baseUrl()."/users/request"?>>Send Request</a></li>
 									<li><a href="services.html">Activity Log</a></li>
 									<li><a href="events.html">Materials</a></li>
 								</li>
@@ -89,7 +89,8 @@ $identity = Zend_Auth::getInstance()->getIdentity();
 										<li><a href=<?= $this->baseUrl()."/users/list"?>>Users</a></li>
 										<li><a href=<?= $this->baseUrl()."/course/index"?>>Courses</a></li>
 										<li><a href=<?= $this->baseUrl()."/category/index"?>>Categorise</a></li>
-										</li>
+										<li><a href=<?= $this->baseUrl()."/materials/index"?>>Materials</a></li>
+										<li><a href=<?= $this->baseUrl()."/users/list-request"?>>Requests</a></li>
 									</ul>
 								</li>
 								</ul>
