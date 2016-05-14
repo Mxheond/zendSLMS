@@ -1,29 +1,22 @@
-<div class="page-heading">
-<div class="container">
-<h2>Course Detail</h2>
-</div>
-</div>
 <!--BANNER END-->
-<div class="course-detail">
+<div class="course-detail" style="background:cadetblue;">
 <div class="container">
 <div class="row">
-<span class="span6">
-	<img src=<?php echo $this->baseUrl().'/images/courses/'.$this->course[0]['image'] ?>>
-</span>
+<div class="span4">
+<div class="profile-box profile-view">
+	<div class="thumb">
+	    <a href="#"><img src=<?php echo $this->baseUrl().'/images/courses/'.$this->course[0]['image'] ?>></a>
+	</div>
+</div>	
+</div>
 <div class="span6">
 	<div class="text">
     	<h2><?php echo $this->course[0]['name'] ?></h2>
         <h5></h5>
-        <div class="reviews">
-        	<a href="#">109 Reviews</a>
-            <div class="rating">
-            	<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-            </div>
-        </div>
         <div clas='row'>
         <table class='span5'>
         	<tr>
-        	<textarea><?php echo $this->course[0]['summary']?></textarea>
+        	<textarea rows="7"><?php echo $this->course[0]['summary']?></textarea>
         	</tr>
         </table>
         </div>
@@ -60,8 +53,8 @@
                        <?php if($cm['is_locked'] == '0'){
                        ?>
                         <div class="course-detail-btn">
-                            <a href="#">View</a>
-                            <a href="#">Download</a>
+                            <a href=<?php echo $this->baseUrl().'/materials/'.$cm['path'] ?>>View</a>
+                            <a href=<?php echo $this->baseUrl().'/materials/download/id/'.$cm['id'] ?>>Download</a>
                         </div>
                         <?php } ?>
                     </div>

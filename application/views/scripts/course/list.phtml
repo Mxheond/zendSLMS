@@ -2,6 +2,7 @@
 	$cats = $this->cats;
 	$courses = $this->course;
 ?>
+</style>
 <div id="view-content">
 	<div class="container">
         	<div class="row">
@@ -22,7 +23,7 @@
                                             <h4><?php echo $course['name']?></h4>
                                         </div>
                                         <div class="course-detail-btn">
-                                            <a href="#">Material</a>
+                                            <a href=<?php echo $this->baseUrl().'/course/single/id/'.$course['id'];?>>Material</a>
                                         </div>
                                     </div>
                                 </div>

@@ -1,49 +1,59 @@
-<br /><br />
 <div id="view-content">
+<div class="container">
+	<div class="row">
+		<div class="follow-us">
+			<table class="table">
+				<th>Name</th>
+				<th>Type</th>
+				<th>Type</th>
+				<th>Course Name</th>
+				<th>Number Of downloads</th>
+				<th>Time Added</th>
+				
 <?php
 	$material = $this->material;
 	// echo "<label> ID: </label>".$material['id'].'<br />';
 	// echo "<label> User ID: </label>".$material['user_id'].'<br />';
-	echo "<label> Name: </label><p>".$material['name'].'</p><br />';
-	echo "<label> Type: </label>".$material['type'].'<br /><br />';
+	echo "<tr><td>".$material['name'].'</td>';
+	echo "<td>".$material['type'].'</td>';
 	// echo "<label> User ID: </label>".$material['user_id'].'<br /><br />';
-	echo "<label> Course Name: </label>".$this->course.'<br /><br />';
-	echo "<label> Number of downloads: </label>".$material['num_downloads'].'<br /><br />';
+	echo "<td>".$this->course.'</td>';
+	echo "<td>Number of downloads: </label>".$material['num_downloads'].'</td>';
 	// echo "<label> Is_Locked: </label>".$material['is_locked'].'<br /><br />';
 	// echo "<label> Is_Hidden: </label>".$material['is_hidden'].'<br /><br />';
-	echo "<label> Time_Added: </label>".$material['time'].'<br /><br />';
+	echo "<td>".$material['time'].'</td>';
 	if ($material['is_locked'] == "0") {
-	echo "<a href='".$this->baseUrl()."/materials/download/id/".$material['id']."'>Download the material</a><br />";
+	echo "<td><a href='".$this->baseUrl()."/materials/download/id/".$material['id']."'>Download the material</a></td>";
 
 	}
 	
 	echo "<br/> ";
 	// if ($this->identity->role == "1") {
-		echo "<a href='".$this->baseUrl()."/materials/edit/id/".$material['id']."'> Edit </a> "."<a href='".$this->baseUrl()."/materials/delete/id/".$material['id']."'> Delete </a> <br />";
-		echo "<a href='".$this->baseUrl()."/materials/show/id/".$material['id'].($material['is_hidden'] == "0" ?  "'> Hide </a> ": "'> Show </a> ");
+		echo "<td><a class='btn btn-primary' href='".$this->baseUrl()."/materials/edit/id/".$material['id']."'> Edit </a> "." <a class='btn btn-danger' href='".$this->baseUrl()."/materials/delete/id/".$material['id']."'> Delete </td>";
+		echo "<td><a class='btn btn-info' href='".$this->baseUrl()."/materials/show/id/".$material['id'].($material['is_hidden'] == "0" ?  "'> Hide </a> ": "'> Show </a> ").'</td>';
 		
-		echo "<a href='".$this->baseUrl()."/materials/lock/id/".$material['id'].($material['is_locked'] == "0" ?  "'> Lock </a> ": "'> Unlock </a> ");
+		echo "<td><a class='btn btn-info' href='".$this->baseUrl()."/materials/lock/id/".$material['id'].($material['is_locked'] == "0" ?  "'> Lock </a> ": "'> Unlock </a></td> ");
 	// }
-
+echo "</tr></table>";
 	echo  "<br/><h3>Comments</h3>";
 
 	foreach ($this->comments as  $comment) {
 		$user_obj = new Application_Model_DbTable_User();
 		$user = $user_obj->getUserById($comment['user_id'])[0];
-		echo "<a href='".$this->baseUrl()."/users/profile/id/".$user['id']."'>".$user['full_name']."</a><br/>&nbsp&nbsp&nbsp&nbsp&nbsp";
-		echo $comment['content']."&nbsp&nbsp&nbsp&nbsp&nbsp";
+		echo "<div><a class='btn btn-default' href='".$this->baseUrl()."/users/profile/id/".$user['id']."'>".$user['full_name']."</a><br/>&nbsp&nbsp&nbsp&nbsp&nbsp</div>";
+		echo "<div class='span5'><span class='well'>".$comment['content']."&nbsp&nbsp&nbsp&nbsp&nbsp</span></div>";
 		if ($this->identity->id == $comment['user_id']) {
-			echo "<a href='".$this->baseUrl()."/comments/edit/id/".$comment['id']."/material_id/".$material['id']."'> Edit </a> "."<a href='".$this->baseUrl()."/comments/delete/id/".$comment['id']."/material_id/".$material['id']."'> Delete </a> ";
+			echo "<a class='btn btn-primary' href='".$this->baseUrl()."/comments/edit/id/".$comment['id']."/material_id/".$material['id']."'> Edit </a> "."<a class='btn btn-danger' href='".$this->baseUrl()."/comments/delete/id/".$comment['id']."/material_id/".$material['id']."'> Delete </a>";
 		}
 		echo "<br />";
 		
 	}
 ?>
 <form action="<?= $this->baseUrl() ?>/comments/add" method="post" >
-	<textarea name="content"></textarea>
+	<textarea class='form-control' name="content"></textarea>
 	<input type="hidden" name="material_id" value="<?= $material['id'] ?>" />
 	<input type="hidden" name="user_id" value="<?= $this->identity->id ?>" />
-	<input type="submit" name="submit" value="Add Comment" />
+	<input class='btn btn-success' type="submit" name="submit" value="Add Comment" />
 </form>
 	
 	
