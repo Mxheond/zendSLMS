@@ -1,0 +1,59 @@
+<?php
+	$cats = $this->cats;
+	$courses = $this->course;
+?>
+<div id="view-content">
+	<div class="container">
+        	<div class="row">
+            	<div class="span9">
+                	<div class="featured-courses">
+                    	<h2>Browsing All Topics</h2>
+                    	<div class="row">
+                    	<?php 
+                    		foreach ($courses as $course) {
+                    	?>
+                        	<div class="span3">
+                            	<div class="course">
+                                    <div class="thumb">
+                                        <a href=""><img alt="" src=<?php echo $this->baseUrl().'/images/courses/'.$course['image'] ?>></a>
+                                    </div>
+                                    <div class="text">
+                                        <div class="header">
+                                            <h4><?php echo $course['name']?></h4>
+                                        </div>
+                                        <div class="course-detail-btn">
+                                            <a href="#">Material</a>
+                                            <a href="#">Detail</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+		                		}
+		                    ?>
+                        </div>
+                    </div>
+                 </div>
+                    
+                <div class="span3">
+                	<!--SIDEBAR START-->
+                	<div class="sidebar">
+                    	<!--COURSE CATEGORIES WIDGET START-->
+                    	<div class="widget widget-course-categories">
+                        	<h2>Course Categorty</h2>
+                            <ul>
+                            	<?php foreach ($cats as $cat){ ?>
+                            	<li><a href=<?php echo $this->baseUrl().'/course/list/cid/'.$cat['id'];?>><?php echo $cat['name']; ?></a></li>
+                            	 <?php
+               						 }
+                				?>
+                            </ul>
+                        </div>
+                    </div>  
+                 </div>
+                
+                  <!--COURSE CATEGORIES WIDGET END-->
+            </div>
+        </div>
+   </div>
+</div>

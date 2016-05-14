@@ -12,6 +12,7 @@ class Application_Form_Login extends Zend_Form
 		$email->addValidator(new Zend_Validate_EmailAddress);
 		$email->setAttrib('class','input-block-level');
 		$email->addFilter('StringTrim');
+		$email->addFilter('StringToLower');
 		$this->addElement($email);
 		
 		// $this->addElement('text', 'email', array('label' => 'Email:',

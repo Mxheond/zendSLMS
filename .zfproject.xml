@@ -37,6 +37,7 @@
         </controllerFile>
         <controllerFile controllerName="Course">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="list"/>
         </controllerFile>
         <controllerFile controllerName="Comments">
           <actionMethod actionName="index"/>
@@ -47,6 +48,7 @@
         <formFile formName="User"/>
         <formFile formName="Login"/>
         <formFile formName="Material"/>
+        <formFile formName="Category"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -57,6 +59,7 @@
         <modelFile modelName="User"/>
         <dbTableDirectory>
           <dbTableFile dbTableName="Comment"/>
+          <dbTableFile dbTableName="Category"/>
         </dbTableDirectory>
       </modelsDirectory>
       <dbTableDirectory>
@@ -136,6 +139,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Materials">
             <viewScriptFile forActionName="lock"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Course">
+            <viewScriptFile forActionName="list"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

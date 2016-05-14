@@ -1,14 +1,30 @@
-<br /><br />
-
+<div id="view-content">
+<div class="container">
+	<div class="row">
+		<div class="follow-us">
+			<table class="table">
+				<th>Name</th>
+				<th>Date</th>
+				<th>Category</th>
 <?php
-	foreach ($this->course as $course){
-	echo "<label> Name: </label>".$course['name'].'<br />';
-	echo "<label> Date: </label>".$course['date'].'<br />';
-	echo "<a href='".$this->baseUrl()."/course/edit/id/".$course['id']."'> Edit </a> "."<a href='".$this->baseUrl()."/course/delete/id/".$course['id']."'> Delete </a> <br />";
-	echo "<br/>";
-	echo "<a href='".$this->baseUrl()."/course/single/id/".$course['id']."'> Details </a> ";
-	echo "<br/>";
-	echo str_repeat('*', 100).'<br />';
-	}
 
+echo "<th><a class='btn btn-primary' href='".$this->baseUrl()."/course/add'> Add New Course</a>";
+	// if (!empty($cat)) {
+		$cat = $this->cat;
+		$course = $this->course;
+		$num = count($cat);
+		for ($i=0; $i < $num ; $i++) { 
+		echo "<tr><td>".$course[$i]['name'].'</td>';
+		echo "<td>".$course[$i]['time'].'</td>';
+		echo "<td>".$cat[$i]['name'].'</td>';
+		echo "<td><a class='btn btn-primary' href='".$this->baseUrl()."/course/edit/id/".$course[$i]['id']."'> Edit </a> "."<a class='btn btn-danger' href='".$this->baseUrl()."/course/delete/id/".$course[$i]['id']."'> Delete </a> ";
+		echo "<a class='btn btn-info' href='".$this->baseUrl()."/course/single/id/".$course[$i]['id']."'> Details </a> ";
+		echo "</td></tr>";
+		}	
+		// }
 ?>
+</table>
+</div>
+</div>
+</div>
+</div>
