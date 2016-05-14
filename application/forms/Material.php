@@ -16,8 +16,8 @@ class Application_Form_Material extends Zend_Form
 		$path->setLabel('Upload a file :')->setDestination('/var/www/html/zendSLMS/public/materials');
 		$path->addValidator('Count', false, 1);
 		$path->addFilter('StringtoLower');
-		$path->addValidator('Extension', false, 'pdf,flv,mp4,doc,docx,ppt,pptx');
-		$path->addValidator('NotExists', false, '/var/www/html/zendSLMS/public/materials');
+		$path->addValidator('Extension', false, 'pdf,flv,mp4,3gp,mkv,doc,docx,ppt,pptx');
+		// $path->addValidator('NotExists', false, '/var/www/html/zendSLMS/public/materials');
 
 		$submit = new Zend_Form_Element_Submit('submit');
 
