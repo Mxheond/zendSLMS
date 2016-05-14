@@ -19,6 +19,7 @@ echo "<th><a class='btn btn-primary' href='".$this->baseUrl()."/course/add'> Add
 		echo "<td>".$cat[$i]['name'].'</td>';
 		echo "<td><a class='btn btn-primary' href='".$this->baseUrl()."/course/edit/id/".$course[$i]['id']."'> Edit </a> "."<a class='btn btn-danger' href='".$this->baseUrl()."/course/delete/id/".$course[$i]['id']."'> Delete </a> ";
 		echo "<a class='btn btn-info' href='".$this->baseUrl()."/course/single/id/".$course[$i]['id']."'> Details </a> ";
+		echo "<td><a class='btn btn-primary' href='".$this->baseUrl()."/materials/add/id/".$course[$i]['id']."'> Add New Material </a> ";
 		echo "</td></tr>";
 		}	
 		// }

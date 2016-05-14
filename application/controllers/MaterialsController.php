@@ -14,7 +14,8 @@ class MaterialsController extends Zend_Controller_Action
 			$this->redirect('users/login');
 		}
 		else {
-            $this->view->identity = $authorization->getIdentity();
+			$this->identity = $authorization->getIdentity();
+			$this->view->identity = $this->identity;
 		}
     }
 
@@ -29,6 +30,7 @@ class MaterialsController extends Zend_Controller_Action
     {
         // action body
         $form = new Application_Form_Material();
+        $course_id = $this->getRequest()->getParam('id');
 		if($this->getRequest()->isPost()){
 			if($form->isValid($this->getRequest()->getParams())){
 				// $filter = new Zend_Filter_BaseName();
@@ -58,7 +60,7 @@ class MaterialsController extends Zend_Controller_Action
 				}
 				$date = new Zend_Date();
 				$form_data = $form->getValues();
-				$other_data = array("type" => $type, "user_id" => 1, "course_id" => 1, "time" => $date);
+				$other_data = array("type" => $type, "user_id" => $this->identity->id, "course_id" => $course_id, "time" => $date);
 				$data = array_merge($form_data, $other_data);
 				if ($this->model->addMaterial($data))
 					$this->redirect('materials/index');			
@@ -83,9 +85,9 @@ class MaterialsController extends Zend_Controller_Action
     {
     	$id = $this->getParam('id');
     	$material = $this->model->getMaterialById($id);
-    	$new_value = intval($material['num_downloads']);
-    	$data =array( "num_downlaods" =>  ++$new_value);
-    	$this->model->downloaded($id, $data);
+    	// $new_value = intval($material['num_downloads']);
+    	// $data =array( "num_downlaods" =>  $new_value);
+    	$this->model->downloaded($id);
     	$filename = $material['path'];
     	$f = implode("/", array(
 	    	realpath(APPLICATION_PATH . '/../public'),

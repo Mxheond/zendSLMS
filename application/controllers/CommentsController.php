@@ -14,6 +14,7 @@ class CommentsController extends Zend_Controller_Action
 			$this->redirect('users/login');
 		}
 		else {
+			$this->identity = $authorization->getIdentity();
             $this->view->identity = $authorization->getIdentity();
 		}
     }

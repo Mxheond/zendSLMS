@@ -45,7 +45,7 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
 		return $this->fetchAll($select)->toArray();
 	}
 
-	function downloaded($id, $data)
+	function downloaded($id)
 	{
 		# code...
 		$material = $this->fetchRow('id ='.$id, 1);

@@ -23,7 +23,7 @@ function show($material,$path)
 	echo "<label> Is_Locked: </label>".$material['is_locked'].'<br /><br />';
 	echo "<label> Is_Hidden: </label>".$material['is_hidden'].'<br /><br />';
 	echo "<label> Time_Added: </label>".$material['time'].'<br /><br />';
-	echo "<a href='".$path."/materials/download/name/".$material['path']."'>Download the material</a><br />";
+	echo "<a href='".$path."/materials/download/id/".$material['id']."'>Download the material</a><br />";
 	echo "<a href='".$path."/materials/edit/id/".$material['id']."'> Edit </a> "."<a href='".$path."/materials/delete/id/".$material['id']."'> Delete </a> <br />";
 	echo str_repeat('*', 100).'<br />';
 }
