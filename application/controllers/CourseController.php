@@ -59,7 +59,13 @@ class CourseController extends Zend_Controller_Action
         $id = $this->getRequest()->getParam('id');
 		$course = $this->model->getCourseById($id);
 		$form = new Application_Form_Course();
+        $form->getElement('name')->removeValidator('Db_NoRecordExists');   
 		$form->populate($course[0]);
+        $cats = $this->model->getCat();
+        $cat_form= $form->getElement('cat_id');
+        foreach ($cats as $cat) {
+            $cat_form->addMultiOptions(array($cat['id'] => $cat['name']));
+        }
         $values = $this->getRequest()->getParams();
 		if($this->getRequest()->isPost()){
 			if($form->isValid($this->getRequest()->getParams())){
@@ -67,6 +73,9 @@ class CourseController extends Zend_Controller_Action
 				$this->model->editCourse($id,$data);
 				$this->redirect('course/index');
     		}
+        }
+        $this->view->form = $form;
+    }
 
     public function listAction()
     {
