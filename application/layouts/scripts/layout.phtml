@@ -55,7 +55,7 @@ $identity = Zend_Auth::getInstance()->getIdentity();
         <div class="navigation-bar">
         	<div class="container">
             	<div class="logo">
-                	<a href=<?= $this->baseUrl()."/index/index"?>><img src="/zendSLMS/public/images/logo.png" alt=""></a>
+                	<a href=<?php echo $this->baseUrl()."/index/index"?>><img src="/zendSLMS/public/images/logo.png" alt=""></a>
                 </div>
                  <?php
               if(isset($this->identity)){
@@ -73,43 +73,13 @@ $identity = Zend_Auth::getInstance()->getIdentity();
 							<ul>
                             	<li><a href=<?= $this->baseUrl()."/index/index"?>>Home</a></li>
 								</li>
-								<li><a href="javascript:void(0)">Blog</a>
-									<ul>
-										<li><a href="blog.html">Blog</a></li>
-										<li><a href="blog-detail.html">Blog Detail</a></li>
-									</ul>
+									<li><a href=<?php echo $this->baseUrl()."/users/request"?>>Send Request</a></li>
+									<li><a href="services.html">Activity Log</a></li>
+									<li><a href="events.html">Materials</a></li>
 								</li>
-								<li><a href="services.html">Services</a></li>
-								<li><a href="javascript:void(0)">Events</a>
-									<ul>
-										<li><a href="events.html">Events</a></li>
-										<li><a href="events-detail.html">Event Detail</a></li>
-									</ul>
+								<li>	<a href=<?= $this->baseUrl()."/course/list"?>>Courses</a>
 								</li>
-								<li><a href="javascript:void(0)">Courses</a>
-									<ul>
-										<li><a href="courses.html">Courses</a></li>
-										<li><a href="courses-detail.html">Course Detail</a></li>
-									</ul>
 								</li>
-								<li><a href="javascript:void(0)">Pages</a>
-									<ul>
-										<li><a href="about-us.html">About us</a></li>
-										<li><a href="404.html">Error 404</a></li>
-										<li><a href="faq.html">FAQs</a></li>
-										<li><a href="gallery.html">Gallery</a></li>
-										<li><a href="news.html">News</a></li>
-										<li><a href="our-lessons.html">Our Lessons</a></li>
-										<li><a href="search-result.html">Search Result</a></li>
-										<li><a href="signin.html">Sign In</a></li>
-										<li><a href="student-login.html">Student Login</a></li>
-										<li><a href="student-profile.html">Student Profile</a></li>
-										<li><a href="teacher-profile.html">Teacher Profile</a></li>
-										<li><a href="team.html">Our Team</a></li>
-										<li><a href="edit-profile.html">Edit Your Profile</a></li>
-									</ul>
-								</li>
-								<li><a href="contact-us.html">Contact Us</a></li>
 							</ul>
 							<?php if($this->identity->role == '1'){
 								?>
@@ -119,7 +89,8 @@ $identity = Zend_Auth::getInstance()->getIdentity();
 										<li><a href=<?= $this->baseUrl()."/users/list"?>>Users</a></li>
 										<li><a href=<?= $this->baseUrl()."/course/index"?>>Courses</a></li>
 										<li><a href=<?= $this->baseUrl()."/category/index"?>>Categorise</a></li>
-										</li>
+										<li><a href=<?= $this->baseUrl()."/materials/index"?>>Materials</a></li>
+										<li><a href=<?= $this->baseUrl()."/users/list-request"?>>Requests</a></li>
 									</ul>
 								</li>
 								</ul>

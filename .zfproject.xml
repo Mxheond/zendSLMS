@@ -38,6 +38,7 @@
         <controllerFile controllerName="Course">
           <actionMethod actionName="index"/>
           <actionMethod actionName="list"/>
+          <actionMethod actionName="single"/>
         </controllerFile>
         <controllerFile controllerName="Comments">
           <actionMethod actionName="index"/>
@@ -142,6 +143,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Course">
             <viewScriptFile forActionName="list"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Course">
+            <viewScriptFile forActionName="single"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

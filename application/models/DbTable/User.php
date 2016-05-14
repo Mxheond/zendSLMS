@@ -51,8 +51,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$row->photo = $userInfo['photo'];
 		$row->role = 0;
 		$row->is_banned = 0;
+
 		return $row->save();
 	}
+
 	function changeState($id,$col){
 		$row = $this->fetchRow('id='.$id);
 		if($row->$col == '0'){
@@ -63,5 +65,22 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		return $row->save();
 	}
 
+	function sendRequest($id , $content){
+		$req = new Application_Model_DbTable_CoursesRequest();
+		$row = $req->createRow();
+		$row->user_id = $id;
+		$row->content = $content;
+		$date = Zend_Date::now();
+		$row->time = $date;
+		return $row->save();
+
+	}
+
+	function getAllRequests(){
+		$req = new Application_Model_DbTable_CoursesRequest();
+		$select = $req->select("*")
+					->from('courses_requests');
+		return $this->fetchAll($select)->toArray();
+	}
 }
 

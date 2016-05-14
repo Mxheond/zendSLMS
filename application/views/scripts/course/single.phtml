@@ -1,29 +1,4 @@
 <br /><br />
 <div id="view-content">
-	<!-- <p>View script for controller <b>Posts</b> and script/action name <b>single</b></p> -->
-	<h2> Course Details </h2>
+	<p>View script for controller <b>Course</b> and script/action name <b>single</b></p>
 </div>
-<div class="col-md-6">
-	<?php
-
-		foreach ($this->course as $course) 
-		{
-			echo "<label> Name: </label>".$course['name'].'<br />';
-			echo "<label> Summary: </label>".$course['summary'].'<br />';
-		}
-
-		// echo "<h4> Comments</h4>";
-
-
-		// foreach ($this->comments as $comment) 
-		// {
-
-		// 	echo "<label> Content: </label>".$comment['content'].'<br />';
-		// 	echo "<a href='".$this->baseUrl()."/comments/edit/id/".$comment['id']."'> Edit </a> "."<a href='".$this->baseUrl()."/comments/delete/id/".$comment['id']."'> Delete </a> <br />";
-		// 	echo str_repeat('*', 20).'<br />';
-		// }
-
-			echo $this->form;
-		
-	?>
-	</div>
