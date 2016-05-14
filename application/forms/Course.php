@@ -38,6 +38,7 @@ class Application_Form_Course extends Zend_Form
 	 	$id = new Zend_Form_Element_Hidden('id');
 		// $content = new Zend_Form_Element_Textarea('content');
 		$cat_id->setLabel('Select Category');
+		$cat_id->setRequired();
 		// $content->addValidator(new Zend_Validate_StringLength(array('min'=>10, 'max'=>250)));
 		// $content->setAttrib('class', 'form-control');
 		
@@ -45,12 +46,14 @@ class Application_Form_Course extends Zend_Form
                 $summary = new Zend_Form_Element_Textarea('summary');
                 $summary->setLabel('Summary');
                 $summary->setAttrib('class','span6');
+                $summary->setRequired();
                 
                 $image = new Zend_Form_Element_File('image');
                 $image->setLabel('Upload an image:');
                 $image->setDestination('/var/www/html/zendSLMS/public/images/courses');
                 $image->addValidator('Count', false, 1);
                 $image->addValidator('Extension', false, 'jpg,png,gif');
+                $image->setRequired();
         
                 $submit = new Zend_Form_Element_Submit('Submit');
 		$submit->setAttrib('class', 'btn btn-primary');

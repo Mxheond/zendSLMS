@@ -51,10 +51,10 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$row->photo = $userInfo['photo'];
 		$row->role = 0;
 		$row->is_banned = 0;
-<<<<<<< HEAD
-=======
+
 		return $row->save();
 	}
+
 	function changeState($id,$col){
 		$row = $this->fetchRow('id='.$id);
 		if($row->$col == '0'){
@@ -62,7 +62,6 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		}else{
 			$row->$col = '0';
 		}
->>>>>>> 7daf2ec92d3ba3d6a3c985cc8871da19bd05d0e0
 		return $row->save();
 	}
 

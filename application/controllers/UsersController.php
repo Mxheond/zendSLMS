@@ -147,7 +147,7 @@ class UsersController extends Zend_Controller_Action
     {
         if(isset($this->identity)){
             $id = $this->getRequest()->getParam('id');
-            if($this->identity->id == $id){
+            if($this->identity->id == $id || $this->identity->role == '1'){
                 $user = $this->model->getUserById($id);
                 $form = new Application_Form_User();
                 $form->getElement('email')->removeValidator('Db_NoRecordExists');

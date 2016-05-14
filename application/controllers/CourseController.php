@@ -53,7 +53,7 @@ class CourseController extends Zend_Controller_Action
 		if($this->model->deletecourse($id))
 			$this->redirect('course/index');
     }
-    
+
     public function editAction()
     {
         $id = $this->getRequest()->getParam('id');
@@ -89,8 +89,15 @@ class CourseController extends Zend_Controller_Action
 
     }
 
+    public function singleAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
 
 
