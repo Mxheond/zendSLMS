@@ -27,7 +27,7 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
 
 	function getMaterialById($id){
 		$material = $this->fetchRow('id ='.$id, 1);
-		return $this->material->toArray();
+		return $material->toArray();
 	}
 
 	function addMaterial($materialInfo){
@@ -45,6 +45,13 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
 		return $this->fetchAll($select)->toArray();
 	}
 
+	function downloaded($id, $data)
+	{
+		# code...
+		$material = $this->fetchRow('id ='.$id, 1);
+		$material->num_downloads += 1;
+		return $material->save();
+	}
 
 	function deleteMaterial($id){
 		return $this->delete('id='.$id);
@@ -55,7 +62,7 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
 		$material->$column = $new_value;
 		return $material->save();
 	}
-	function hideMAterial($id){
+	function hideMaterial($id){
 		return $this->updateColumn($id, "is_hidden", 1);
 	}
 
