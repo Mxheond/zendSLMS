@@ -94,7 +94,9 @@ class CourseController extends Zend_Controller_Action
 
     public function singleAction()
     {
-        // action body
+        $id = $this->getRequest()->getParam('id');
+        $this->view->course = $this->model->getCourseById($id);
+        $this->view->courseM = $this->model->getCourseMaterial($id);
     }
 
 

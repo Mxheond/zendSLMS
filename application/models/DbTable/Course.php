@@ -59,7 +59,17 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
              ->from(array('category' => 'category'),
                     array('id', 'name'))
              ->join(array('course' => 'course'),
-                    'category.id = course.cat_id and category.id = '.$id);
+                    'category.id = course.cat_id and category.id ='.$id);
+        return $this->fetchAll($select)->toArray();
+	}
+	function getCourseMaterial($id){
+		$select = $this->select()->setintegritycheck(false)
+             ->from(array('course' => 'course'),
+                    array('id', 'name'))
+             ->join(array('material' => 'material'),
+                    'course.id = material.course_id and course.id ='.$id);
+             // var_dump($this->fetchAll($select)->toArray());
+             // die();
         return $this->fetchAll($select)->toArray();
 	}
 	

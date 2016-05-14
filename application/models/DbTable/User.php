@@ -78,7 +78,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
 	function getAllRequests(){
 		$req = new Application_Model_DbTable_CoursesRequest();
-		$select = $req->select("*")
+		$select = $req->select()
 					->from('courses_requests');
 		return $this->fetchAll($select)->toArray();
 	}
